@@ -8,7 +8,7 @@ body {
   padding: 3em;
   place-items: center;
 }
-.boxes {
+body .boxes {
   display: grid;
   grid-gap: 2em;
   grid-template-columns: repeat(2, minmax(350px, 1fr));
