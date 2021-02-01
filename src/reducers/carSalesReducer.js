@@ -18,16 +18,18 @@ const initialState ={
 }
 
 export const carSalesReducer = (state = initialState, action) =>{
-    switch(action.type){
+    switch (action.type) {
         case ADD_FEATURE:
             return{
                 ...state,
-                additionalPrice: state.additionalPrice + action.payload.price, // pulls additional price which is 0 and adds the car price which is the 26k
+            additionalPrice: state.additionalPrice + action.payload.price,// pulls additional price which is 0 and adds the car price which is the 26k
             car:{
                 ...state.car,
-                features: [...state.car.features, action.payload]
+                features: [...state.car.features, action.payload],//printing added feature to screen
             }
-            }
+           
+        
+        }
         case REMOVE_FEATURE:
             return{
                 ...state,
@@ -41,7 +43,7 @@ export const carSalesReducer = (state = initialState, action) =>{
                  },
                 
             }
-            default: return state; 
+            default: return state; //returning back to original state
     }
 }
 

@@ -12,4 +12,6 @@ import {carSalesReducer} from "./reducers/carSalesReducer"
 const store = createStore(carSalesReducer);
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<Provider store ={store}><App /></Provider>, rootElement);
+ReactDOM.render(<Provider store ={store}>
+     <App />
+</Provider>, rootElement);
