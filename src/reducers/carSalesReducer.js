@@ -17,34 +17,41 @@ const initialState ={
     ]
 }
 
-export const carSalesReducer = (state = initialState, action) =>{
-    switch (action.type) {
+export const carSalesReducer = (state = initialState,action) =>{
+    console.log("ACTION FROM OUR REDUCER ====>", action)
+    switch(action.type){
         case ADD_FEATURE:
-            return{
-                ...state,
-            additionalPrice: state.additionalPrice + action.payload.price,// pulls additional price which is 0 and adds the car price which is the 26k
-            car:{
-                ...state.car,
-                features: [...state.car.features, action.payload],//printing added feature to screen
-            }
-           
+        //do something... add out payload and replace state
+        return{
+        ...state,
+        price:state.price + action.payload.price,
         
+        car:{
+            ...state.car,
+            price:state.car.price + action.payload.price,
+            features:[
+                ...state.car.features, 
+                action.payload
+            ]//printing added feature to screen
         }
-        case REMOVE_FEATURE:
-            return{
-                ...state,
-                additionalPrice:(state.additionalPrice -= action.payload.price),//takes the price that was added to the original price and subtracts the added feature
-                car:{
-                    ...state.car,
-                    price: state.car.price - action.payload.price,//takes price of that car and subtracts it from the additional features price
-                    features: state.car.features.filter(
-                        (feature) => feature.id !== action.payload.id//targets the additional features inside "features" array and 
-                    ),
-                 },
-                
-            }
-            default: return state; //returning back to original state
+        
     }
+        
+        case REMOVE_FEATURE:
+        //do something
+        return{
+            ...state,
+        price:(state.price -= action.payload.price),//takes the price that was added to the original price and subtracts the added feature
+        car:{
+            ...state.car,
+            price: state.car.price - action.payload.price,//takes price of that car and subtracts it from the additional features price
+            features: state.car.features.filter(
+                (feature) => feature.id !== action.payload.id//targets the additional features inside "features" array and filters it removing it from the list
+            )
+        }
+    }
+    default: return state; //returning back to original state
+}
 }
 
 export default carSalesReducer;
